@@ -1,0 +1,7 @@
+{
+  "name": "bt-scout-master",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
