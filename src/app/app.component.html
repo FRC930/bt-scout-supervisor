@@ -1,5 +1,26 @@
 <ion-app>
-  <div>
-    {{ messagingService.connectedDevices | async }}
-  </div>
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="connect()">Connect</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Current Status: {{ status }}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Connected Devices</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          {{ devices }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
 </ion-app>
