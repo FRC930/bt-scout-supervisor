@@ -1,0 +1,95 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item *ngFor="let form of scoutingForms" (click)="selectForm(form)"> {{ form.name }} </ion-item>
+    </ion-list>
+    <ion-button (click)="createNewForm()">Create New Form</ion-button>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>Builder</ion-title>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="presentSaveModal()" [strong]="true">Save</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true" id="main-content" class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <ion-list
+            cdkDropList
+            #menuList="cdkDropList"
+            [cdkDropListData]="menu"
+            cdkDropListSortingDisabled
+            [cdkDropListConnectedTo]="[tableList]"
+            (cdkDropListDropped)="drop($event)"
+            (cdkDropListExited)="exited($event)"
+            (cdkDropListEntered)="entered()"
+          >
+            <div *ngFor="let item of menu" cdkDrag [cdkDragData]="item" class="ion-padding">
+              <div style="width: 100%">
+                <ng-container
+                  *ngComponentOutlet="
+                  item.component;
+                  inputs: item.inputs;
+                "
+                />
+              </div>
+            </div>
+          </ion-list>
+        </ion-col>
+        <ion-col size="9">
+          <ion-list cdkDropList #tableList="cdkDropList" [cdkDropListData]="selectedMetricBuilder" (cdkDropListDropped)="drop($event)" class="example-list">
+            <div class="drop_zone">
+              <div *ngFor="let item of selectedMetricBuilder" cdkDrag [cdkDragData]="item">
+                <div style="width: 100%; padding: 5px">
+                  <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                  <ng-container
+                    *ngComponentOutlet="
+                  item.component;
+                  inputs: item.inputs;
+                "
+                  />
+                </div>
+              </div>
+            </div>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>
+<ion-modal #modal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Save</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input label="Name" [(ngModel)]="name" class="ion-text-end"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select label="Type" [(ngModel)]="type">
+          <ion-select-option *ngFor="let type of types" [value]="type"> {{ type }} </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox style="width: 100%" slot="start" [(ngModel)]="isDefault">Default Form for Type</ion-checkbox>
+      </ion-item>
+      <ion-button expand="full" (click)="save()">Save</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>

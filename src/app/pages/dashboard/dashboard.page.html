@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!isAdvertising" (click)="connect()"> Connect </ion-button>
+      <ion-button *ngIf="isAdvertising" (click)="disconnect()"> Disconnect </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-grid cdkDropListGroup>
+    <ion-row>
+      <ion-col size="4">
+        <ion-card class="left-pair">
+          <ion-card-content>
+            <app-team-pair [station]="deviceMap.red1" (stationUpdated)="broadcastMap()"></app-team-pair>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card class="left-pair right-pair">
+          <ion-card-content>
+            <app-team-pair [station]="deviceMap.red2" (stationUpdated)="broadcastMap()"></app-team-pair>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card class="right-pair">
+          <ion-card-content>
+            <app-team-pair [station]="deviceMap.red3" (stationUpdated)="broadcastMap()"></app-team-pair>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">
+        <ion-card class="left-pair">
+          <ion-card-content>
+            <app-team-pair [station]="deviceMap.blue1" (stationUpdated)="broadcastMap()"></app-team-pair>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card class="left-pair right-pair">
+          <ion-card-content>
+            <app-team-pair [station]="deviceMap.blue2" (stationUpdated)="broadcastMap()"></app-team-pair>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card class="right-pair">
+          <ion-card-content>
+            <app-team-pair [station]="deviceMap.blue3" (stationUpdated)="broadcastMap()"></app-team-pair>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

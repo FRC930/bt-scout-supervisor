@@ -1,0 +1,38 @@
+ion-content {
+  --ion-background-color: #f1f1fa;
+}
+
+ion-toolbar {
+  --background: #1d57a5;
+  --color: white;
+
+  ion-button {
+    --color: white;
+  }
+}
+
+ion-grid {
+  padding-bottom: 20px;
+  height: 100%;
+}
+
+ion-row {
+  height: 50%;
+  padding-bottom: 10px;
+}
+
+ion-card {
+  height: 100%;
+  background-color: white;
+  box-shadow: none;
+  border-radius: 20px;
+  color: black;
+}
+
+ion-card.left-pair {
+  margin-inline-end: 5px;
+}
+
+ion-card.right-pair {
+  margin-inline-start: 5px;
+}

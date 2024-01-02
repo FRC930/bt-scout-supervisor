@@ -1,7 +1,8 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { MessagingService } from './services/messaging/messaging.service';
-import { BluetoothService } from './services/bluetooth/bluetooth.service';
+import { MessagingService } from './shared/services/messaging/messaging.service';
+import { BluetoothService } from './shared/services/bluetooth/bluetooth.service';
 import { Platform } from '@ionic/angular';
+import { KeyValueStorage } from '@ionic-enterprise/secure-storage/ngx';
 
 @Component({
   selector: 'app-root',
@@ -9,29 +10,9 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public status = '';
-  public devices: string[] = [];
+  constructor(public messagingService: MessagingService, public bt: BluetoothService, private ngZone: NgZone, private storage: KeyValueStorage) {}
 
-  constructor(
-    public messagingService: MessagingService,
-    public bt: BluetoothService,
-    private ngZone: NgZone
-  ) {}
-
-  ngOnInit(): void {}
-
-  public connect() {
-    this.messagingService.begin();
-    this.bt.deviceStatus.subscribe((status) => {
-      this.ngZone.run(() => {
-        this.status = JSON.stringify(status);
-      });
-    });
-
-    this.messagingService.connectedDevices.subscribe((devices) => {
-      this.ngZone.run(() => {
-        this.devices = devices;
-      });
-    });
+  async ngOnInit() {
+    await this.storage.create('totally_secure_encryption_key');
   }
 }

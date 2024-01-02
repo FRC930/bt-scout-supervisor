@@ -1,22 +1,35 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { TabsComponent } from './tabs.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: TabsComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard',
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardPageModule),
+      },
+      {
+        path: 'builder',
+        loadChildren: () => import('./pages/builder/builder.module').then((m) => m.BuilderPageModule),
+      },
+      {
+        path: 'match-scout',
+        loadChildren: () => import('./pages/match-scout/match-scout.module').then((m) => m.MatchScoutPageModule),
+      },
+    ],
   },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -12,6 +12,12 @@ PODS:
     - Capacitor
   - CordovaPlugins (5.6.0):
     - CapacitorCordova
+    - SQLCipher (~> 4.0)
+  - SQLCipher (4.5.4):
+    - SQLCipher/standard (= 4.5.4)
+  - SQLCipher/common (4.5.4)
+  - SQLCipher/standard (4.5.4):
+    - SQLCipher/common
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -21,6 +27,10 @@ DEPENDENCIES:
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
   - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
+
+SPEC REPOS:
+  trunk:
+    - SQLCipher
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -45,7 +55,8 @@ SPEC CHECKSUMS:
   CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
   CapacitorKeyboard: b978154b024a5f65e044908e37d15b7de58b9d12
   CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
-  CordovaPlugins: 7f65a10d6a7cee3abe52f98497f6950bf8af1d7e
+  CordovaPlugins: 8c5917dbfcb31a215fcf1030aaf00ec88a2e7b79
+  SQLCipher: 905b145f65f349f26da9e60a19901ad24adcd381
 
 PODFILE CHECKSUM: 0381d09167db361ed446a10f049fd27bab1b40b1
 
