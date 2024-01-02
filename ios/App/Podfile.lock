@@ -8,11 +8,15 @@ PODS:
     - Capacitor
   - CapacitorKeyboard (5.0.6):
     - Capacitor
+  - CapacitorLiveUpdates (0.1.1-beta.4):
+    - Capacitor
+    - IonicLiveUpdates (~> 0.5.0-beta.1)
   - CapacitorStatusBar (5.0.6):
     - Capacitor
   - CordovaPlugins (5.6.0):
     - CapacitorCordova
     - SQLCipher (~> 4.0)
+  - IonicLiveUpdates (0.5.0-beta.1)
   - SQLCipher (4.5.4):
     - SQLCipher/standard (= 4.5.4)
   - SQLCipher/common (4.5.4)
@@ -25,11 +29,13 @@ DEPENDENCIES:
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
+  - "CapacitorLiveUpdates (from `../../node_modules/@capacitor/live-updates`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
   - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
 
 SPEC REPOS:
   trunk:
+    - IonicLiveUpdates
     - SQLCipher
 
 EXTERNAL SOURCES:
@@ -43,6 +49,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/haptics"
   CapacitorKeyboard:
     :path: "../../node_modules/@capacitor/keyboard"
+  CapacitorLiveUpdates:
+    :path: "../../node_modules/@capacitor/live-updates"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
   CordovaPlugins:
@@ -54,10 +62,12 @@ SPEC CHECKSUMS:
   CapacitorCordova: 931b48fcdbc9bc985fc2f16cec9f77c794a27729
   CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
   CapacitorKeyboard: b978154b024a5f65e044908e37d15b7de58b9d12
+  CapacitorLiveUpdates: 1f37f66f44ca50a8b1a975126839ce383aade987
   CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
   CordovaPlugins: 8c5917dbfcb31a215fcf1030aaf00ec88a2e7b79
+  IonicLiveUpdates: bf5aa07e5bedb693a9fd5a977056d5fa785c7012
   SQLCipher: 905b145f65f349f26da9e60a19901ad24adcd381
 
-PODFILE CHECKSUM: 0381d09167db361ed446a10f049fd27bab1b40b1
+PODFILE CHECKSUM: 20a9a796a1c0127cc91ea2284abe780a15bcdda3
 
 COCOAPODS: 1.12.1
