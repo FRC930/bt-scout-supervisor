@@ -52,7 +52,7 @@ export class BluetoothService {
         });
     });
 
-    this.notifyQueue.pipe(concatMap((params: NotifyOrRespondParams) => from(this.respondOrNotify(params)).pipe(delay(10)))).subscribe((_) => {});
+    this.notifyQueue.pipe(concatMap((params: NotifyOrRespondParams) => from(this.respondOrNotify(params)).pipe(delay(50)))).subscribe((_) => {});
   }
 
   async startAdvertising(): Promise<{ status: Status }> {

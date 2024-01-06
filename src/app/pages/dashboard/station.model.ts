@@ -1,3 +1,5 @@
+import { MatchType } from 'src/app/shared/models/message-payloads/ds_assign.payload';
+
 export interface ScoutingStation {
   station: 'Red' | 'Blue';
   position: 1 | 2 | 3;
@@ -10,6 +12,9 @@ export interface ScoutingStation {
 }
 
 export interface ScoutingStationMap {
+  match: string;
+  event: string;
+  matchType: MatchType;
   red1: ScoutingStation;
   red2: ScoutingStation;
   red3: ScoutingStation;
@@ -19,6 +24,9 @@ export interface ScoutingStationMap {
 }
 
 export const initialScoutingStationMap: ScoutingStationMap = {
+  match: 'Q1',
+  event: '',
+  matchType: MatchType.Qualification,
   red1: {
     station: 'Red',
     position: 1,

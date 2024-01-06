@@ -6,7 +6,7 @@ import { DropdownMetricParams } from '../../components/dropdown-metric/dropdown-
 import { Metric, MetricType, MetricValueMap } from '../../shared/models/metric.model';
 import { ScoutingForm, ScoutingFormType } from '../../shared/models/scouting-form.model';
 import { IonModal, MenuController } from '@ionic/angular';
-import { ScoutingFormService } from '../../shared/db/scouting-form.service';
+import { ScoutingFormService } from '../../shared/db/scouting-form/scouting-form.service';
 import { ButtonMetricComponent } from '../../components/button-metric/button-metric.component';
 import { DropdownMetricComponent } from '../../components/dropdown-metric/dropdown-metric.component';
 

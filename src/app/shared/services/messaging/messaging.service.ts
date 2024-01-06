@@ -3,9 +3,11 @@ import { BluetoothService } from '../bluetooth/bluetooth.service';
 import { InitializeResult, Status } from '@awesome-cordova-plugins/bluetooth-le';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CHAR_MESSAGE_QUEUE_UUID, CHAR_SCOUTING_FORM_REQUEST_UUID } from '../bluetooth/gatt';
-import { ConnectionMessage, DisconnectMessage, Message, PingMessage, MessageTopic, RequestFormsMessage, buildFormsDataMessage } from './messaging.model';
+import { ConnectionMessage, DisconnectMessage, Message, PingMessage, MessageTopic, RequestFormsMessage, buildFormsDataMessage, MatchDataMessage } from './messaging.model';
 import { UnreliableUnorderedUnchunker } from '../chunker/unchunker';
-import { ScoutingFormService } from '../../db/scouting-form.service';
+import { ScoutingFormService } from '../../db/scouting-form/scouting-form.service';
+import { MatchDataPayload } from '../../models/message-payloads/match_data.payload';
+import { MatchDataService } from '../../db/match-data/match-data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +22,7 @@ export class MessagingService {
 
   // private watchdogs = new Map<string, any>();
 
-  constructor(private bt: BluetoothService, private formService: ScoutingFormService) {
+  constructor(private bt: BluetoothService, private formService: ScoutingFormService, private matchDataService: MatchDataService) {
     this.bt.deviceStatus.subscribe(this.bluetoothBroker.bind(this));
     this.unchunker.onMessage = (message) => {
       this.writeRequested(this.bt.ble.bytesToString(message));
@@ -28,7 +30,7 @@ export class MessagingService {
   }
 
   public isAdvertising(): Promise<boolean> {
-    return this.bt.ble.isAdvertising().then((status) => status.status);
+    return this.bt.ble.isAdvertising().then((status: { status: boolean }) => status.status);
   }
 
   private bluetoothBroker(result: InitializeResult | null) {
@@ -86,6 +88,19 @@ export class MessagingService {
     });
   }
 
+  private matchData(message: MatchDataMessage) {
+    const payload = message.payload as MatchDataPayload;
+    if (message.id && message.id.length > 0) {
+      this.matchDataService.addOrUpdateMatch({
+        deviceId: message.id,
+        eventKey: payload.event,
+        teamNumber: payload.team,
+        matchNumber: payload.match,
+        ...payload,
+      });
+    }
+  }
+
   private writeRequested(message: string) {
     const queueMessage: Message<MessageTopic, any> = JSON.parse(message);
     console.log('MESSAGE RECEIVED', queueMessage);
@@ -102,6 +117,10 @@ export class MessagingService {
       case MessageTopic.REQUEST_FORMS:
         console.log('REQUEST_FORMS');
         this.requestForms(queueMessage as RequestFormsMessage);
+        break;
+      case MessageTopic.MATCH_DATA:
+        console.log('MATCH_DATA');
+        this.matchData(queueMessage as MatchDataMessage);
         break;
     }
   }

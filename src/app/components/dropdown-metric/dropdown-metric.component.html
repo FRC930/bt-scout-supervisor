@@ -34,12 +34,15 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-list [inset]="true">
+      <ion-item>
+        <ion-input label="CSV id" labelPlacement="stacked" type="text" placeholder="CSV id" [(ngModel)]="params.id"></ion-input>
+      </ion-item>
+      <ion-list style="margin-top: 14px">
         <ion-item>
           <ion-input label="Dropdown Label" labelPlacement="stacked" type="text" placeholder="Dropdown Label" [(ngModel)]="params.buttonText"></ion-input>
         </ion-item>
       </ion-list>
-      <ion-list [inset]="true">
+      <ion-list style="margin-top: 14px">
         <ion-item-sliding *ngFor="let option of params.options; let i = index">
           <ion-item [button]="true" (click)="editOption(i)">
             {{ option }}

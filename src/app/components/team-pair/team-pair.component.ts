@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ScoutingStation } from '../../pages/dashboard/station.model';
+import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-team-pair',
@@ -8,6 +9,7 @@ import { ScoutingStation } from '../../pages/dashboard/station.model';
   styleUrls: ['./team-pair.component.scss'],
 })
 export class TeamPairComponent implements OnInit {
+  @ViewChild(IonModal) modal!: IonModal;
   @Input() station: ScoutingStation = { station: 'Red', position: 1, devices: [], team: 0 };
 
   @Output() stationUpdated: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -22,7 +24,15 @@ export class TeamPairComponent implements OnInit {
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       this.stationUpdated.emit(true);
-      console.log('new container', event.container.data[event.currentIndex]);
     }
+  }
+
+  openUpdateTeamModal() {
+    this.modal.present();
+  }
+
+  closeModal() {
+    this.modal.dismiss();
+    this.stationUpdated.emit(true);
   }
 }

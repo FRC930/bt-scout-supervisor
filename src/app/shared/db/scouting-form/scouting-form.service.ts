@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { KeyValueStorage } from '@ionic-enterprise/secure-storage/ngx';
-import { ScoutingForm, ScoutingFormType } from '../models/scouting-form.model';
+import { ScoutingForm, ScoutingFormType } from '../../models/scouting-form.model';
 
 const STORAGE_KEY = 'scouting-forms';
 
@@ -37,6 +37,9 @@ export class ScoutingFormService {
   }
 
   async getForms(): Promise<ScoutingForm[]> {
+    try {
+      await this.storage.create('totally_secure_encryption_key');
+    } catch (e) {}
     const forms = await this.storage.get(STORAGE_KEY);
     if (forms) return forms;
     else return [];

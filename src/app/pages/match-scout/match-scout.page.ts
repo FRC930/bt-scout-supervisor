@@ -3,7 +3,7 @@ import { ScoutingForm, ScoutingFormType } from '../../shared/models/scouting-for
 import { ButtonMetricComponent } from '../../components/button-metric/button-metric.component';
 import { DropdownMetricComponent } from '../../components/dropdown-metric/dropdown-metric.component';
 import { MetricType, MetricValueMap } from '../../shared/models/metric.model';
-import { ScoutingFormService } from '../../shared/db/scouting-form.service';
+import { ScoutingFormService } from '../../shared/db/scouting-form/scouting-form.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

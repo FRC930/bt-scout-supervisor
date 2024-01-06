@@ -1,6 +1,6 @@
 <div>
   <ion-grid>
-    <ion-row>
+    <ion-row (click)="openUpdateTeamModal()">
       <ion-col>
         <ion-text [color]="station.station === 'Red' ? 'danger' : 'primary'">
           <h1>{{ station.station }} {{ station.position }}:</h1>
@@ -39,3 +39,18 @@
     </ion-row>
   </ion-grid>
 </div>
+<ion-modal #modal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Update Team</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input label="Team Number" type="number" labelPlacement="stacked" [(ngModel)]="station.team"></ion-input>
+      </ion-item>
+      <ion-button (click)="closeModal()">Update</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>

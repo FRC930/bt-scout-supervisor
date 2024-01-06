@@ -37,6 +37,7 @@ export type DSAssignMessage = Message<MessageTopic.DS_ASSIGN, DSAssignPayload>;
 export type RequestAprovalMessage = Message<MessageTopic.REQUEST_APPROVAL, RequestApprovalPayload>;
 export type RequestResponseMessage = Message<MessageTopic.REQUEST_RESPONSE, RequestResponsePayload>;
 export type RequestFormsMessage = Message<MessageTopic.REQUEST_FORMS, RequestFormsPayload>;
+export type MatchDataMessage = Message<MessageTopic.MATCH_DATA, MatchDataPayload>;
 export type FormsDataMessage = Message<MessageTopic.FORMS_DATA, FormsDataPayload>;
 
 export const buildDSAssignMessage = (message: DSAssignPayload): DSAssignMessage => ({

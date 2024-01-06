@@ -10,10 +10,11 @@ import { BluetoothLE } from '@awesome-cordova-plugins/bluetooth-le/ngx';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { KeyValueStorage } from '@ionic-enterprise/secure-storage/ngx';
 import { TabsComponent } from './tabs.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [AppComponent, TabsComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, DragDropModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, DragDropModule, QRCodeModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, BluetoothLE, KeyValueStorage],
   bootstrap: [AppComponent],
 })

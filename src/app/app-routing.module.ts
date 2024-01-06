@@ -24,6 +24,10 @@ const routes: Routes = [
         path: 'match-scout',
         loadChildren: () => import('./pages/match-scout/match-scout.module').then((m) => m.MatchScoutPageModule),
       },
+      {
+        path: 'export',
+        loadChildren: () => import('./pages/export/export.module').then((m) => m.ExportPageModule),
+      },
     ],
   },
 ];
