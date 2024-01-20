@@ -1,6 +1,7 @@
 export enum MetricType {
   Button,
   Dropdown,
+  Toggle,
 }
 
 export interface Metric {

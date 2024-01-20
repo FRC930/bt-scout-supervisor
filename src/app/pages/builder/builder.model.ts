@@ -2,6 +2,7 @@ import { IonText } from '@ionic/angular';
 import { ButtonMetricComponent } from '../../components/button-metric/button-metric.component';
 import { DropdownMetricComponent } from '../../components/dropdown-metric/dropdown-metric.component';
 import { MetricType, MetricValueMap } from '../../shared/models/metric.model';
+import { ToggleMetricComponent } from 'src/app/components/toggle-metric/toggle-metric.component';
 
 export interface MetricBuilder {
   id: string;
@@ -37,5 +38,13 @@ export const MetricBuilderList: MetricBuilder[] = [
         options: ['Option 1', 'Option 2', 'Option 3'],
       },
     },
+  },
+    {
+      id: '2',
+      type: MetricType.Toggle,
+      component: ToggleMetricComponent,
+      inputs: {
+
+      },
   },
 ];
